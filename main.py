@@ -9,9 +9,11 @@
 
 #Funciones
 
+# Función de bienvenida
 def bienvenida():
     print("Bienvenido a Triviathon!")
 
+# Función para seleccionar categoría
 def seleccionar_categoria():
     print("Selecciona una categoría:")
     print("1. Entretenimiento")
@@ -26,6 +28,7 @@ def seleccionar_categoria():
         print("Selección inválida. Por favor, elige 1 o 2.")
         return seleccionar_categoria()
 
+# Función para jugar la trivia
 def jugar_trivia():
     nombre = input("Ingresa tu nombre: ")
     categoria = seleccionar_categoria()
@@ -43,15 +46,14 @@ def jugar_trivia():
 
         respuesta = input("Selecciona la opción correcta (1-4): ")
 
-        # Verificar si la respuesta es correcta
-        try:
+        if respuesta.isdigit() and 1 <= int(respuesta) <= len(pregunta_actual['opciones']):
             respuesta_seleccionada = pregunta_actual['opciones'][int(respuesta) - 1]
             if respuesta_seleccionada.lower() == pregunta_actual['respuesta'].lower():
                 puntuacion += 3
                 print("¡Correcto! +3 puntos")
             else:
                 print(f"Incorrecto. La respuesta correcta era: {pregunta_actual['respuesta']}")
-        except (IndexError, ValueError):
+        else:
             print("Opción inválida. Por favor, elige un número entre 1 y 4.")
 
         print(f"Puntuación actual: {puntuacion}")
@@ -60,11 +62,7 @@ def jugar_trivia():
     print(f"Juego terminado. Puntuación final: {puntuacion}")
     return nombre, puntuacion
 
-def guardar_resultados(nombre, puntuacion):
-    with open("resultados.txt", "a") as archivo:
-        archivo.write(f"{nombre}: {puntuacion} puntos\n")
-
-
+# Diccionario de preguntas
 preguntas = {
     "Entretenimiento": [
         {"pregunta": "¿En qué serie de televisión se encuentran los personajes principales Ross, Rachel, y Chandler?", 
@@ -79,13 +77,9 @@ preguntas = {
         {"pregunta": "¿De qué reconocida serie es la frase 'Winter is coming?'", 
         "opciones": ["Game of Thrones", "Snowpiercer", "The Walking Dead"], 
         "respuesta": "Game of Thrones"},
-        {"pregunta": "¿De qué reconocida serie es la frase 'Winter is coming'?", 
-        "opciones": ["Game of Thrones", "Snowpiercer", "The Walking Dead"], 
-        "respuesta": "Game of Thrones"},
         {"pregunta": "En The Last of Us, ¿qué nombre tiene el personaje que es la protagonista femenina y que busca proteger a Ellie?", 
         "opciones": ["Sarah", "Tess", "Ellie"], 
-        "respuesta": "Tess"},
-
+        "respuesta": "Tess"}
     ],
     "Deporte": [
         {"pregunta": "¿Cuál es el club con más títulos de la Primera División de Argentina?", 
@@ -102,15 +96,10 @@ preguntas = {
         "respuesta": "Roberto Cherro"},
         {"pregunta": "¿Qué es un 'thruster' en CrossFit?", 
         "opciones": ["Un ejercicio isométrico para el core", "Un ejercicio cardiovascular de alta intensidad", "Un movimiento que combina una sentadilla frontal con un press de hombros"], 
-        "respuesta": "Un movimiento que combina una sentadilla frontal con un press de hombros"},
-
+        "respuesta": "Un movimiento que combina una sentadilla frontal con un press de hombros"}
     ]
 }
 
-jugar_trivia()
-
-###PROGRAMA
-
+# Ejecución del programa
 bienvenida()
 nombre, puntuacion = jugar_trivia()
-guardar_resultados(nombre, puntuacion)
