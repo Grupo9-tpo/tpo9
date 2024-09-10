@@ -97,6 +97,23 @@ preguntas = {
         {"pregunta": "¿Qué es un 'thruster' en CrossFit?", 
         "opciones": ["Un ejercicio isométrico para el core", "Un ejercicio cardiovascular de alta intensidad", "Un movimiento que combina una sentadilla frontal con un press de hombros"], 
         "respuesta": "Un movimiento que combina una sentadilla frontal con un press de hombros"}
+    ],
+    "Geografía": [
+        {"pregunta": "¿Cuál es el país más grande del mundo por superficie?", 
+        "opciones": ["China", "Rusia", "Canadá"], 
+        "respuesta": "Rusia"},
+        {"pregunta": "¿Cuál es el río más largo del mundo?", 
+        "opciones": ["Nilo", "Amazonas", "Misisipi"], 
+        "respuesta": "Amazonas"},
+        {"pregunta": "¿En qué continente se encuentra el desierto del Sahara?", 
+        "opciones": ["Asia", "África", "América del Sur"], 
+        "respuesta": "África"},
+        {"pregunta": "¿Qué país tiene la mayor cantidad de islas en el mundo?", 
+        "opciones": ["Noruega", "Suecia", "Filipinas"], 
+        "respuesta": "Suecia"},
+        {"pregunta": "¿Cuál es la capital de Australia?", 
+        "opciones": ["Sídney", "Melbourne", "Canberra"], 
+        "respuesta": "Canberra"}
     ]
 }
 
