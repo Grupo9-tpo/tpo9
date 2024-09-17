@@ -1,10 +1,3 @@
-'''Edits:
-+Estructura dividida en FUNCION y PROGRAMA 
-+Eliminacion de prints innecesarios dentro de la seccion FUNCION y adicion de returns
-+Referencias y llamadas a las funciones dentro de la seccion de PROGRAMA
-+Diccionarios de Entretenimiento y Deporte completos con una amplia selecc de pregs y rtas
-'''
-
 # Importar los diccionarios desde preguntas.py
 from preguntas import preguntas
 
@@ -48,7 +41,7 @@ def jugar_trivia():
         for i, opcion in enumerate(pregunta_actual['opciones']):
             print(f"{i + 1}. {opcion}")
 
-        respuesta = input("Selecciona la opción correcta (1-4): ")
+        respuesta = input("Selecciona la opción correcta: ")
 
         if respuesta.isdigit() and 1 <= int(respuesta) <= len(pregunta_actual['opciones']):
             respuesta_seleccionada = pregunta_actual['opciones'][int(respuesta) - 1]
@@ -58,7 +51,7 @@ def jugar_trivia():
             else:
                 print(f"Incorrecto. La respuesta correcta era: {pregunta_actual['respuesta']}")
         else:
-            print("Opción inválida. Por favor, elige un número entre 1 y 4.")
+            print("Opción inválida. Por favor, elige un número.")
 
         print(f"Puntuación actual: {puntuacion}")
         print("")
