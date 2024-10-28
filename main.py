@@ -15,7 +15,7 @@ def inicializar_archivo():
 def bienvenida():
     print("¡Bienvenido a Triviathon!")
 
-#Guardar puntaje con manejo de errores
+#Guardar puntaje con manejo de errores + TRY EXCEPT
 def guardar_puntaje(nombre, puntuacion):
     try:
         with open(registro_puntajes, "a") as archivo:
@@ -23,10 +23,14 @@ def guardar_puntaje(nombre, puntuacion):
     except Exception as e:
         print(f"Error al guardar el puntaje: {e}")
 
-#Seleccionar una categoría aleatoria que no se haya jugado
+#Seleccionar una categoría aleatoria que no se haya jugado + TRY EXCEPT
 def seleccionar_categoria(categorias_jugadas):
-    categorias_disponibles = [cat for cat in preguntas.keys() if cat not in categorias_jugadas]
-    return random.choice(categorias_disponibles)
+    try:
+        categorias_disponibles = [cat for cat in preguntas.keys() if cat not in categorias_jugadas]
+        return random.choice(categorias_disponibles)
+    except IndexError:
+        print("No hay más categorías disponibles.")
+        return None
 
 #Jugar la trivia
 def jugar_trivia(categorias_jugadas):
@@ -61,19 +65,25 @@ def jugar_trivia(categorias_jugadas):
 
     return categoria, puntuacion
 
-#Función principal del juego
+#Función principal del juego + TRY EXCEPT
 def main():
     inicializar_archivo()
     bienvenida()
 
     categorias_jugadas = []
     historial_puntos = []
-    nombre = input("Ingresa tu nombre: ")
+
+    try:
+        nombre = input("Ingresa tu nombre: ")
+    except Exception as e:
+        print(f"Error al ingresar el nombre: {e}")
+        return  # Finaliza si hay un error
 
     while len(categorias_jugadas) < 3:
         categoria, puntos = jugar_trivia(categorias_jugadas)
-        categorias_jugadas.append(categoria)
-        historial_puntos.append((categoria, puntos))
+        if categoria:
+            categorias_jugadas.append(categoria)
+            historial_puntos.append((categoria, puntos))
 
         if len(categorias_jugadas) == 3:
             print("\n¡Has jugado las 3 categorías! Fin del juego.")
@@ -93,6 +103,5 @@ def main():
 
     print(f"\nPuntuación total: {puntaje_total}")
 
-#Ejecutar el programa
+# Ejecutar el programa
 main()
-
