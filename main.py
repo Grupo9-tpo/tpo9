@@ -1,21 +1,23 @@
 import random
-import os  #Manejo de archivos y rutas
-from preguntas import preguntas #Import de preguntas.py
+import os  # Manejo de archivos y rutas
+from preguntas import preguntas  # Import de preguntas.py
 
-#Nombre del archivo donde se guardarán los puntajes
+# Nombre del archivo donde se guardarán los puntajes
 registro_puntajes = "puntajes.txt"
 
-#Verificar si el archivo de puntajes existe; si no, crearlo vacío
+# Verificar si el archivo de puntajes existe; si no, crearlo vacío
 def inicializar_archivo():
     if not os.path.exists(registro_puntajes):
         with open(registro_puntajes, "w") as archivo:
             archivo.write("")
 
-#Función de bienvenida
+
+# Función de bienvenida
 def bienvenida():
     print("¡Bienvenido a Triviathon!")
 
-#Guardar puntaje con manejo de errores + TRY EXCEPT
+
+# Guardar puntaje con manejo de errores + TRY EXCEPT
 def guardar_puntaje(nombre, puntuacion):
     try:
         with open(registro_puntajes, "a") as archivo:
@@ -23,16 +25,20 @@ def guardar_puntaje(nombre, puntuacion):
     except Exception as e:
         print(f"Error al guardar el puntaje: {e}")
 
-#Seleccionar una categoría aleatoria que no se haya jugado + TRY EXCEPT
+
+# Seleccionar una categoría aleatoria que no se haya jugado + TRY EXCEPT
 def seleccionar_categoria(categorias_jugadas):
     try:
-        categorias_disponibles = [cat for cat in preguntas.keys() if cat not in categorias_jugadas]
+        categorias_disponibles = [
+            cat for cat in preguntas.keys() if cat not in categorias_jugadas
+        ]
         return random.choice(categorias_disponibles)
     except IndexError:
         print("No hay más categorías disponibles.")
         return None
 
-#Jugar la trivia
+
+# Jugar la trivia
 def jugar_trivia(categorias_jugadas):
     categoria = seleccionar_categoria(categorias_jugadas)
     print(f"Se ha seleccionado la categoría: {categoria}")
@@ -65,7 +71,8 @@ def jugar_trivia(categorias_jugadas):
 
     return categoria, puntuacion
 
-#Función principal del juego + TRY EXCEPT
+
+# Función principal del juego + TRY EXCEPT
 def main():
     inicializar_archivo()
     bienvenida()
@@ -102,6 +109,7 @@ def main():
         print(f"Categoría: {categoria}, Puntos: {puntos}")
 
     print(f"\nPuntuación total: {puntaje_total}")
+
 
 # Ejecutar el programa
 main()
