@@ -151,11 +151,11 @@ def iniciar_juego():
     # Crear la ventana principal
     global ventana_principal
     ventana_principal = tk.Tk()
-    ventana_principal.title("Trivia - Selección de Categoría")
+    ventana_principal.title("Triviathon")
     ventana_principal.geometry("400x400")  # Tamaño de la ventana
 
     # Etiqueta para instrucciones
-    instrucciones_label = tk.Label(ventana_principal, text="Elige una categoría para jugar", font=("Arial", 14))
+    instrucciones_label = tk.Label(ventana_principal, text="Bienvenido a Triviathon", font=("Arial", 14))
     instrucciones_label.pack(pady=20)
 
     # Frame para las categorías
